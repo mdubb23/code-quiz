@@ -18,48 +18,48 @@ nextBtnEl.addEventListener("click", () => {
 
 var questions = [
     {
-        question: "what is 1 + 1?",
+        question: "what is the '<' symbol used for",
         answers: [
-            { text: "2", correct: true },
-            { text: "40", correct: false },
-            { text: "16", correct: false },
-            { text: "5", correct: false }
+            { text: "Less than", correct: true },
+            { text: "Greater than", correct: false },
+            { text: "Equal to", correct: false },
+            { text: "Creating a function", correct: false }
         ]
     },
     {
-        question: "what is 1 + 2?",
+        question: "To return a value back after a function you must",
         answers: [
-            { text: "3", correct: true },
-            { text: "40", correct: false },
-            { text: "16", correct: false },
-            { text: "5", correct: false }
+            { text: "Use 'return'", correct: true },
+            { text: "Use an equal sign", correct: false },
+            { text: "Leave blank", correct: false },
+            // { text: "", correct: false }
         ]
     },
     {
-        question: "what is 1 + 3?",
+        question: "what is HTML and CSS used for?",
         answers: [
-            { text: "4", correct: true },
-            { text: "40", correct: false },
-            { text: "16", correct: false },
-            { text: "5", correct: false }
+            { text: "Styling the page", correct: true },
+            { text: "Adding functions", correct: false },
+            { text: "Nothing", correct: false },
+            { text: "All of the above", correct: false }
         ]
     },
     {
-        question: "what is 1 + 4?",
+        question: "what is the '*' symbol used to do",
         answers: [
-            { text: "2", correct: false },
-            { text: "40", correct: false },
-            { text: "16", correct: false },
-            { text: "5", correct: true }
+            { text: "Divide", correct: false },
+            { text: "Add", correct: false },
+            { text: "Get square root", correct: false },
+            { text: "Multiply", correct: true }
         ]
     },
     {
-        question: "what is 8 + 8?",
+        question: "which is an api?",
         answers: [
-            { text: "2", correct: false },
-            { text: "40", correct: false },
-            { text: "16", correct: true },
-            { text: "5", correct: false }
+            { text: "HTML", correct: false },
+            { text: "Javascript", correct: false },
+            { text: "CSS", correct: true },
+            { text: "Bootstrap", correct: false }
         ]
     }
 
@@ -75,19 +75,15 @@ function startGame() {
     currentQuestionIndex = 0
     playButton.classList.add("hide")
     quesionBoxEl.classList.remove("hide")
-    // function time() { } var sec = 20
-    // timerEl.innerHTML = '00:' + sec;
-    // sec--
     nextQuestion()
-    var sec = 20
-    var dScore = 0
+    var sec = 21
     var timeUpdate = setInterval(() => {
         sec--;
         timerEl.innerHTML = '00:' + sec;
         if (sec < 10) {
             timerEl.innerHTML = '00:0' + sec;
         }
-        if (sec <= 0) {
+        if (sec < 0) {
             clearInterval(timeUpdate)
 
             var playAgain = confirm("you're out of time, would you like to play again?")
@@ -100,11 +96,6 @@ function startGame() {
 
         }
     }, 1000);
-
-    // if (quesionBoxEl.answers = true) {
-
-    // }
-
 
 }
 
@@ -125,13 +116,10 @@ function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
         var button = document.createElement("button")
-        dScore = 0
         button.innerText = answer.text
         button.classList.add("btn")
         if (answer.correct) {
             button.dataset.correct = answer.correct
-            scoreEl.innerHTML = '' + dScore
-            dScore++
         }
 
         button.addEventListener("click", pickAnswer)
@@ -144,7 +132,6 @@ function showQuestion(question) {
 
 function pickAnswer(event) {
     var selectedAnswer = event.target
-    // var correct = selectedAnswer.dataset.correct
     Array.from(answerBtnEl.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
@@ -172,6 +159,3 @@ function clearStatusClass(element) {
     element.classList.remove("wrong")
 }
 
-// function scoreUp() {
-//
-// }
